@@ -19,7 +19,6 @@ const HomeScreen = () => {
     )
 }
 
-console.log("theme", theme)
 
 
 const styles = StyleSheet.create({
