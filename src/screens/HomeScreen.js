@@ -1,4 +1,4 @@
-import { View, StyleSheet, TextInput, Text, ImageBackground, TouchableOpacity } from 'react-native'
+import { View, StyleSheet, TextInput, Text, ImageBackground, TouchableOpacity, ScrollView } from 'react-native'
 import { theme } from '../theme'
 import { MagnifyingGlassIcon } from "react-native-heroicons/outline";
 import { MapPinIcon } from 'react-native-heroicons/solid'
@@ -6,15 +6,21 @@ import { useState } from 'react';
 
 const HomeScreen = () => {
     const [location, setLocation] = useState([]);
+    const [search, setSearch] = useState('');
+
+    const handleSearch = () => {
+        
+    }
+
     return (
-        <ImageBackground source={require('../assets/bg.png')} style={styles.image} >
+        <ImageBackground blurRadius={50} source={require('../assets/bg.png')} style={styles.image} >
             <View style={styles.container}>
-                <TextInput placeholder='Enter city' style={styles.searchContainer} placeholderTextColor={'lightgray'} />
-                <TouchableOpacity style={styles.button}>
+                <TextInput value={search} onChangeText={setSearch} placeholder='Enter city' style={styles.searchContainer} placeholderTextColor={'lightgray'} />
+                <TouchableOpacity style={styles.button} onPress={handleSearch}>
                     <MagnifyingGlassIcon color="white" size={25} />
                 </TouchableOpacity>
             </View>
-            <View style={[styles.container, { backgroundColor: 'white', padding: 15, flexDirection: 'column', gap: 10, borderRadius: 30 }]}>
+            <View style={[styles.container, { backgroundColor: 'white', padding: 15, flexDirection: 'column', gap: 10, borderRadius: 30, }]}>
                 <TouchableOpacity style={{ flexDirection: 'row', gap: 3, alignItems: 'center' }} >
                     <MapPinIcon color="gray" />
                     <Text style={{ fontSize: 16 }}>London</Text>
