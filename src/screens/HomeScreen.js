@@ -1,6 +1,6 @@
-import { View, StyleSheet, TextInput, ImageBackground, TouchableOpacity } from 'react-native'
+import { View, StyleSheet, TextInput, Text, ImageBackground, TouchableOpacity } from 'react-native'
 import { theme } from '../theme'
-
+import { MagnifyingGlassIcon } from "react-native-heroicons/outline";
 
 const HomeScreen = () => {
 
@@ -9,6 +9,7 @@ const HomeScreen = () => {
             <View style={styles.container}>
                 <TextInput placeholder='Enter city' style={styles.searchContainer} placeholderTextColor={'lightgray'} />
                 <TouchableOpacity style={styles.button}>
+                    <MagnifyingGlassIcon color="white" size={25} />
                 </TouchableOpacity>
             </View>
         </ImageBackground>
@@ -19,10 +20,18 @@ const HomeScreen = () => {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+        flexDirection: 'row',
+        backgroundColor: theme.bgWhite(0.2),
+        marginTop: 10,
+        borderRadius: "100%",
+        marginHorizontal: 5,
+        padding: 5
 
     },
     button: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
 
     },
     image: {
@@ -32,9 +41,8 @@ const styles = StyleSheet.create({
     searchContainer: {
         padding: 4,
         marginHorizontal: 5,
-
-        borderRadius: 5,
-        backgroundColor: theme.bgWhite(0.2)
+        flex: 5,
+        color: 'white'
 
     },
     searchInput: {
