@@ -3,14 +3,20 @@ import { theme } from '../theme'
 import { MagnifyingGlassIcon } from "react-native-heroicons/outline";
 import { MapPinIcon } from 'react-native-heroicons/solid'
 import { useState } from 'react';
+import { fetchLocations } from '../api/weather';
 
 const HomeScreen = () => {
     const [location, setLocation] = useState([]);
     const [search, setSearch] = useState('');
 
     const handleSearch = () => {
-        
+        fetchLocations({ cityName: search }).then((res) => {
+            setLocation(res)
+        })
+
     }
+
+    console.log("lo", location);
 
     return (
         <ImageBackground blurRadius={50} source={require('../assets/bg.png')} style={styles.image} >
