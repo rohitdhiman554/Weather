@@ -12,10 +12,6 @@ const HomeScreen = () => {
                 </TouchableOpacity>
             </View>
         </ImageBackground>
-
-
-
-
     )
 }
 
