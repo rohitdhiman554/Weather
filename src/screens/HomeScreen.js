@@ -1,15 +1,28 @@
 import { View, StyleSheet, TextInput, Text, ImageBackground, TouchableOpacity } from 'react-native'
 import { theme } from '../theme'
 import { MagnifyingGlassIcon } from "react-native-heroicons/outline";
+import { MapPinIcon } from 'react-native-heroicons/solid'
+import { useState } from 'react';
 
 const HomeScreen = () => {
-
+    const [location, setLocation] = useState([]);
     return (
         <ImageBackground source={require('../assets/bg.png')} style={styles.image} >
             <View style={styles.container}>
                 <TextInput placeholder='Enter city' style={styles.searchContainer} placeholderTextColor={'lightgray'} />
                 <TouchableOpacity style={styles.button}>
                     <MagnifyingGlassIcon color="white" size={25} />
+                </TouchableOpacity>
+            </View>
+            <View style={[styles.container, { backgroundColor: 'white', padding: 15, flexDirection: 'column', gap: 10, borderRadius: 30 }]}>
+                <TouchableOpacity style={{ flexDirection: 'row', gap: 3, alignItems: 'center' }} >
+                    <MapPinIcon color="gray" />
+                    <Text style={{ fontSize: 16 }}>London</Text>
+                </TouchableOpacity>
+                <View style={{ width: "100%", backgroundColor: 'black', height: 0.4 }} />
+                <TouchableOpacity style={{ flexDirection: 'row', gap: 3, alignItems: 'center' }} >
+                    <MapPinIcon color="gray" />
+                    <Text style={{ fontSize: 16 }}>India</Text>
                 </TouchableOpacity>
             </View>
         </ImageBackground>
