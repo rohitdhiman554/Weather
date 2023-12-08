@@ -22,21 +22,24 @@ const HomeScreen = () => {
         <ImageBackground blurRadius={50} source={require('../assets/bg.png')} style={styles.image} >
             <View style={[styles.container, { backgroundColor: showSearch ? theme.bgWhite(0.2) : 'transparent' }]}>
                 {showSearch ? <TextInput value={search} onChangeText={setSearch} placeholder='Enter city' style={styles.searchContainer} placeholderTextColor={'lightgray'} /> : null}
-                <TouchableOpacity style={styles.button} onPress={() => toggleSearch(!showSearch)}>
-                    <MagnifyingGlassIcon color="white" size={25} />
+                <TouchableOpacity style={showSearch ? styles.button : styles.fixedButton} onPress={() => toggleSearch(!showSearch)}>
+                    <MagnifyingGlassIcon color="white" size={28} />
                 </TouchableOpacity>
             </View>
-            <View style={[styles.container, { backgroundColor: 'white', padding: 15, flexDirection: 'column', gap: 10, borderRadius: 30, }]}>
-                <TouchableOpacity style={{ flexDirection: 'row', gap: 3, alignItems: 'center' }} >
-                    <MapPinIcon color="gray" />
-                    <Text style={{ fontSize: 16 }}>London</Text>
-                </TouchableOpacity>
-                <View style={{ width: "100%", backgroundColor: 'black', height: 0.4 }} />
-                <TouchableOpacity style={{ flexDirection: 'row', gap: 3, alignItems: 'center' }} >
-                    <MapPinIcon color="gray" />
-                    <Text style={{ fontSize: 16 }}>India</Text>
-                </TouchableOpacity>
-            </View>
+
+            {
+                showSearch && location.length > 0 ? <View style={[styles.container, { backgroundColor: 'white', padding: 15, flexDirection: 'column', gap: 10, borderRadius: 30, }]}>
+                    <TouchableOpacity style={{ flexDirection: 'row', gap: 3, alignItems: 'center' }} >
+                        <MapPinIcon color="gray" />
+                        <Text style={{ fontSize: 16 }}>London</Text>
+                    </TouchableOpacity>
+                    <View style={{ width: "100%", backgroundColor: 'black', height: 0.4 }} />
+                    <TouchableOpacity style={{ flexDirection: 'row', gap: 3, alignItems: 'center' }} >
+                        <MapPinIcon color="gray" />
+                        <Text style={{ fontSize: 16 }}>India</Text>
+                    </TouchableOpacity>
+                </View> : null
+            }
         </ImageBackground>
     )
 }
@@ -54,10 +57,14 @@ const styles = StyleSheet.create({
 
     },
     button: {
-        flex: 1,
         justifyContent: 'center',
         alignItems: 'flex-end',
-        paddingHorizontal: 5
+        paddingHorizontal: 5,
+        borderRadius: 20,
+        marginHorizontal: 4,
+        padding: 5,
+        backgroundColor: theme.bgWhite(0.3),
+        width: '10%'
 
     },
     image: {
@@ -66,12 +73,19 @@ const styles = StyleSheet.create({
     },
     searchContainer: {
         color: 'white',
-        paddingLeft: 5
+        paddingLeft: 5,
+        flex: 10
 
     },
     searchInput: {
         borderWidth: 10,
         borderColor: 'red'
-    }
+    },
+    fixedButton: {
+        position: 'absolute',
+        right: 10,
+        top: 10,
+        paddingHorizontal: 5,
+    },
 })
 export default HomeScreen
