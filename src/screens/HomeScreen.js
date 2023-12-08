@@ -7,6 +7,7 @@ import { fetchLocations } from '../api/weather';
 
 const HomeScreen = () => {
     const [location, setLocation] = useState([]);
+    const [showSearch, toggleSearch] = useState(false);
     const [search, setSearch] = useState('');
 
     const handleSearch = () => {
@@ -19,9 +20,9 @@ const HomeScreen = () => {
 
     return (
         <ImageBackground blurRadius={50} source={require('../assets/bg.png')} style={styles.image} >
-            <View style={styles.container}>
-                <TextInput value={search} onChangeText={setSearch} placeholder='Enter city' style={styles.searchContainer} placeholderTextColor={'lightgray'} />
-                <TouchableOpacity style={styles.button} onPress={handleSearch}>
+            <View style={[styles.container, { backgroundColor: showSearch ? theme.bgWhite(0.2) : 'transparent' }]}>
+                {showSearch ? <TextInput value={search} onChangeText={setSearch} placeholder='Enter city' style={styles.searchContainer} placeholderTextColor={'lightgray'} /> : null}
+                <TouchableOpacity style={styles.button} onPress={() => toggleSearch(!showSearch)}>
                     <MagnifyingGlassIcon color="white" size={25} />
                 </TouchableOpacity>
             </View>
@@ -45,8 +46,8 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        backgroundColor: theme.bgWhite(0.2),
         marginTop: 10,
+        justifyContent: 'space-between',
         borderRadius: 100,
         marginHorizontal: 5,
         padding: 5
@@ -55,7 +56,8 @@ const styles = StyleSheet.create({
     button: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'flex-end',
+        paddingHorizontal: 5
 
     },
     image: {
@@ -63,10 +65,8 @@ const styles = StyleSheet.create({
         resizeMode: 'cover'
     },
     searchContainer: {
-        padding: 4,
-        marginHorizontal: 5,
-        flex: 5,
-        color: 'white'
+        color: 'white',
+        paddingLeft: 5
 
     },
     searchInput: {
