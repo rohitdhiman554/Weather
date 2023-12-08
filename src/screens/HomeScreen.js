@@ -16,7 +16,6 @@ const HomeScreen = () => {
 
     }
 
-    console.log("lo", location);
 
     return (
         <ImageBackground blurRadius={50} source={require('../assets/bg.png')} style={styles.image} >
@@ -48,7 +47,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         backgroundColor: theme.bgWhite(0.2),
         marginTop: 10,
-        borderRadius: "100%",
+        borderRadius: 100,
         marginHorizontal: 5,
         padding: 5
 
