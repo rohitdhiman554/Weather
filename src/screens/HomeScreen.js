@@ -1,4 +1,4 @@
-import { View, StyleSheet, TextInput, Text, ImageBackground, TouchableOpacity, ScrollView } from 'react-native'
+import { View, StyleSheet, TextInput, Text, ImageBackground, TouchableOpacity, ScrollView, Image } from 'react-native'
 import { theme } from '../theme'
 import { MagnifyingGlassIcon } from "react-native-heroicons/outline";
 import { MapPinIcon } from 'react-native-heroicons/solid'
@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { fetchLocations } from '../api/weather';
 
 const HomeScreen = () => {
-    const [location, setLocation] = useState([]);
+    const [location, setLocation] = useState([1]);
     const [showSearch, toggleSearch] = useState(false);
     const [search, setSearch] = useState('');
 
@@ -19,7 +19,7 @@ const HomeScreen = () => {
 
 
     return (
-        <ImageBackground blurRadius={50} source={require('../assets/bg.png')} style={styles.image} >
+        <ImageBackground blurRadius={50} source={require('../../assets/images/bg.png')} style={styles.image} >
             <View style={[styles.container, { backgroundColor: showSearch ? theme.bgWhite(0.2) : 'transparent' }]}>
                 {showSearch ? <TextInput value={search} onChangeText={setSearch} placeholder='Enter city' style={styles.searchContainer} placeholderTextColor={'lightgray'} /> : null}
                 <TouchableOpacity style={showSearch ? styles.button : styles.fixedButton} onPress={() => toggleSearch(!showSearch)}>
@@ -27,8 +27,10 @@ const HomeScreen = () => {
                 </TouchableOpacity>
             </View>
 
+            {/* {list section} */}
+
             {
-                showSearch && location.length > 0 ? <View style={[styles.container, { backgroundColor: 'white', padding: 15, flexDirection: 'column', gap: 10, borderRadius: 30, }]}>
+                showSearch && location.length > 0 ? <View style={[styles.container, styles.overlappingList, { backgroundColor: 'white', padding: 15, flexDirection: 'column', gap: 10, borderRadius: 30, width: "100%" }]}>
                     <TouchableOpacity style={{ flexDirection: 'row', gap: 3, alignItems: 'center' }} >
                         <MapPinIcon color="gray" />
                         <Text style={{ fontSize: 16 }}>London</Text>
@@ -40,7 +42,21 @@ const HomeScreen = () => {
                     </TouchableOpacity>
                 </View> : null
             }
-        </ImageBackground>
+
+            {/* {forecast section} */}
+
+            <View style={styles.forecastContainer}>
+
+                <View style={styles.cityContainer}>
+                    <Text style={{ fontSize: 25, fontWeight: '800', color: 'white' }}>London,</Text>
+                    <Text style={{ fontSize: 20, color: 'white' }}>United Kingdom</Text>
+                </View>
+
+                <Image style={styles.forecastImage} width="20%" height="20px" source={require('../../assets/images/partlycloudy.png')} />
+
+            </View>
+
+        </ImageBackground >
     )
 }
 
@@ -53,8 +69,13 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         borderRadius: 100,
         marginHorizontal: 5,
-        padding: 5
+        padding: 5,
 
+    },
+    overlappingList: {
+        position: 'absolute',
+        top: 60,
+        zIndex: 10,
     },
     button: {
         justifyContent: 'center',
@@ -87,5 +108,34 @@ const styles = StyleSheet.create({
         top: 10,
         paddingHorizontal: 5,
     },
+    forecastContainer: {
+        position: 'absolute',
+        width: '100%',
+        borderWidth: 2,
+        borderColor: 'red',
+        alignItems: 'center',
+        top: '30%',
+        gap: 10,
+        height: "50%",
+        minheight: "50%"
+
+    },
+    innerContainer: {
+        marginTop: 90,
+        borderColor: 'red',
+        borderWidth: 2,
+    },
+    cityContainer: {
+        flexDirection: 'row',
+        marginTop: 10,
+        alignItems: 'center'
+    },
+    forecastImage: {
+        position: "relative",
+        top: "20%",
+        height: "50%",
+        objectFit: "contain"
+    }
+
 })
 export default HomeScreen
