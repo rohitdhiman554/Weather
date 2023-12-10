@@ -51,9 +51,13 @@ const HomeScreen = () => {
                     <Text style={{ fontSize: 25, fontWeight: '800', color: 'white' }}>London,</Text>
                     <Text style={{ fontSize: 20, color: 'white' }}>United Kingdom</Text>
                 </View>
-
-                <Image style={styles.forecastImage} width="20%" height="20px" source={require('../../assets/images/partlycloudy.png')} />
-
+                <View>
+                    <Image style={styles.forecastImage} source={require('../../assets/images/partlycloudy.png')} />
+                </View>
+                <View style={styles.tempContainer}>
+                    <Text style={{ fontSize: 45, color: "white", fontWeight: "bold" }}> 23&#176;</Text>
+                    <Text style={{ fontSize: 20, color: "white" }}>Partly Cloudy</Text>
+                </View>
             </View>
 
         </ImageBackground >
@@ -114,10 +118,8 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderColor: 'red',
         alignItems: 'center',
-        top: '30%',
-        gap: 10,
-        height: "50%",
-        minheight: "50%"
+        top: '20%',
+        gap: 40,
 
     },
     innerContainer: {
@@ -131,10 +133,14 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     forecastImage: {
-        position: "relative",
-        top: "20%",
-        height: "50%",
+        height: 200,
         objectFit: "contain"
+    },
+    tempContainer: {
+
+        borderWidth: 2,
+        alignItems: "center",
+        gap: 5,
     }
 
 })
