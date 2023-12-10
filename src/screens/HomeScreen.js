@@ -58,6 +58,23 @@ const HomeScreen = () => {
                     <Text style={{ fontSize: 45, color: "white", fontWeight: "bold" }}> 23&#176;</Text>
                     <Text style={{ fontSize: 20, color: "white" }}>Partly Cloudy</Text>
                 </View>
+
+                {/* {temp stats} */}
+                <View style={styles.tempStats}>
+                    <View style={{ flexDirection: 'row', gap: 12 }}>
+                        <Image style={{ height: 25, width: 20, resizeMode: "contain" }} source={require('../../assets/images/wind.png')} />
+                        <Text style={{ fontSize: 20, color: 'white' }}>22km</Text>
+                    </View>
+                    <View style={{ flexDirection: 'row', gap: 12 }}>
+                        <Image style={{ height: 25, width: 20, resizeMode: "contain" }} source={require('../../assets/images/drop.png')} />
+                        <Text style={{ fontSize: 20, color: 'white' }}>23%</Text>
+                    </View>
+                    <View style={{ flexDirection: 'row', gap: 12 }}>
+                        <Image style={{ height: 25, width: 20, resizeMode: "contain" }} source={require('../../assets/images/sun.png')} />
+                        <Text style={{ fontSize: 20, color: 'white' }}>6:05 AM</Text>
+                    </View>
+
+                </View>
             </View>
 
         </ImageBackground >
@@ -120,6 +137,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         top: '20%',
         gap: 40,
+        height: "100%"
 
     },
     innerContainer: {
@@ -137,10 +155,13 @@ const styles = StyleSheet.create({
         objectFit: "contain"
     },
     tempContainer: {
-
-        borderWidth: 2,
         alignItems: "center",
         gap: 5,
+    },
+    tempStats: {
+        flexDirection: "row",
+        justifyContent: 'space-around',
+        width: "100%",
     }
 
 })
